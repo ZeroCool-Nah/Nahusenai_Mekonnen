@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nahusenai Minalu - Cybersecurity Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configure Tailwind to use the Inter font family and a dark mode by default -->
+    <script>
+        tailwind.config = {
+            // NOTE: We keep darkMode: 'class' for flexibility, but we ensure
+            // the dark class is applied to the <body> tag below.
+            darkMode: 'class', 
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-dark': '#111827', // A deep charcoal/dark gray
+                        'secondary-dark': '#1F2937', // Slightly lighter for cards
+                        'accent': '#4F46E5', // Indigo for highlights
+                        'accent-light': '#6366F1',
+                        'text-light': '#D1D5DB', // Light gray for body text
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom CSS for smooth transitions and scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        .section-header {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50%; /* Line underneath the header */
+            height: 4px;
+            background-color: theme('colors.accent');
+            border-radius: 9999px;
+        }
+
+        /* Pro Card Hover Effect */
+        .project-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            will-change: transform;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<!-- 
+    The 'dark' class is already applied here, which should enforce the dark mode 
+    since the Tailwind configuration uses darkMode: 'class'. No changes needed here, 
+    but the issue is usually related to how the local environment processes this.
+-->
+<body class="dark bg-primary-dark text-text-light font-sans antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-secondary-dark shadow-xl bg-opacity-95 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-white tracking-wider">Nahusenai Minalu</h1>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="text-lg hover:text-accent transition duration-300">About</a>
+                <a href="#skills" class="text-lg hover:text-accent transition duration-300">Skills</a>
+                <a href="#projects" class="text-lg hover:text-accent transition duration-300">Projects</a>
+                <a href="#contact" class="text-lg hover:text-accent transition duration-300">Contact</a>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-text-light focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-secondary-dark border-t border-gray-700">
+            <nav class="flex flex-col space-y-2 p-4">
+                <a href="#about" class="block py-2 text-text-light hover:bg-gray-700 rounded-md transition duration-200">About</a>
+                <a href="#skills" class="block py-2 text-text-light hover:bg-gray-700 rounded-md transition duration-200">Skills</a>
+                <a href="#projects" class="block py-2 text-text-light hover:bg-gray-700 rounded-md transition duration-200">Projects</a>
+                <a href="#contact" class="block py-2 text-text-light hover:bg-gray-700 rounded-md transition duration-200">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- 1. Hero Section -->
+        <section id="hero" class="pt-12 md:pt-24 pb-16 flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0 md:space-x-12">
+            <!-- Text Content -->
+            <div class="md:w-3/5 order-2 md:order-1 text-center md:text-left">
+                <p class="text-xl text-accent font-medium mb-3">Hello, I'm</p>
+                <h2 class="text-6xl sm:text-7xl font-extrabold text-white leading-tight mb-4">Nahusenai Minalu</h2>
+                <h3 class="text-3xl text-text-light font-light mb-6"><span class="text-accent-light font-semibold">Cybersecurity Analyst</span> | Student at Bahir Dar University</h3>
+                <p class="text-lg text-gray-400 mb-8 max-w-xl mx-auto md:mx-0">
+                    A dedicated and highly motivated student focusing on digital defense, threat analysis, and practical security implementation. Seeking opportunities to apply academic knowledge in real-world security challenges.
+                </p>
+                <div class="flex justify-center md:justify-start space-x-4">
+                    <a href="#projects" class="px-6 py-3 bg-accent text-white font-semibold rounded-lg shadow-lg hover:bg-accent-light transition duration-300 transform hover:scale-105">View Projects</a>
+                    <a href="#contact" class="px-6 py-3 border border-gray-600 text-text-light font-semibold rounded-lg hover:bg-gray-700 transition duration-300 transform hover:scale-105">Get In Touch</a>
+                </div>
+            </div>
+
+            <!-- Photo Placeholder (Customized) -->
+            <div class="md:w-2/5 order-1 md:order-2 flex justify-center">
+                <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-accent shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                    <!-- 
+                        ACTION REQUIRED:
+                        1. Upload your picture (e.g., nahusenai_photo.jpg) into the same folder as this index.html file.
+                        2. Replace the placeholder URL below with your filename.
+                    -->
+                    <img
+                        src="C:\Users\zeroc\Downloads\I.jpg"
+                        alt="Nahusenai Minalu Professional Photo"
+                        class="w-full h-full object-cover"
+                        onerror="this.onerror=null;this.src='https://placehold.co/500x500/1F2937/FFFFFF?text=Nahusenai';"
+                    >
+                    <!-- Optional: Add a subtle overlay or badge -->
+                    <div class="absolute bottom-0 right-0 p-2 bg-accent rounded-tl-lg text-xs font-bold text-white shadow-xl">
+                        Available
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. About Me Section -->
+        <section id="about" class="py-16 md:py-24 border-t border-gray-700">
+            <h2 class="text-4xl font-bold text-white mb-10 section-header">About Me</h2>
+            <div class="space-y-6 text-lg text-gray-300">
+                <p>
+                    I am a highly motivated Cybersecurity Analyst student currently enrolled at **Bahir Dar University**. My academic focus is on understanding the core principles of information security, spanning defensive strategies, network security architecture, and ethical hacking methodologies. I am passionate about securing digital assets and staying ahead of evolving cyber threats.
+                </p>
+                <p>
+                    My coursework has provided a solid foundation in key areas such as cryptography, secure software development, and incident response planning. I excel in translating complex security requirements into actionable defense mechanisms and detailed reports.
+                </p>
+                <p>
+                    I am actively looking for internship or entry-level roles where I can contribute my analytical skills, commitment to best practices, and hands-on experience with security tools to a professional team. Let's connect to discuss how my academic rigor and technical curiosity can benefit your organization.
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. Skills Section -->
+        <section id="skills" class="py-16 md:py-24 border-t border-gray-700">
+            <h2 class="text-4xl font-bold text-white mb-10 section-header">Core Competencies</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Skill Category 1: Cybersecurity Analysis & Defense -->
+                <div class="p-6 bg-secondary-dark rounded-xl shadow-lg border border-gray-700">
+                    <h3 class="text-2xl font-semibold text-accent mb-4">Security Operations (SOC)</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag">SIEM (Splunk/ELK)</span>
+                        <span class="skill-tag">Incident Response</span>
+                        <span class="skill-tag">Threat Intelligence</span>
+                        <span class="skill-tag">Vulnerability Assessment</span>
+                        <span class="skill-tag">Forensics Basics</span>
+                    </div>
+                </div>
+
+                <!-- Skill Category 2: Tools & Scripting -->
+                <div class="p-6 bg-secondary-dark rounded-xl shadow-lg border border-gray-700">
+                    <h3 class="text-2xl font-semibold text-accent mb-4">Ethical Hacking & Tools</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag">Python (Scripting)</span>
+                        <span class="skill-tag">Bash/Shell</span>
+                        <span class="skill-tag">Kali Linux</span>
+                        <span class="skill-tag">Wireshark</span>
+                        <span class="skill-tag">Metasploit</span>
+                    </div>
+                </div>
+
+                <!-- Skill Category 3: OS & Networking -->
+                <div class="p-6 bg-secondary-dark rounded-xl shadow-lg border border-gray-700">
+                    <h3 class="text-2xl font-semibold text-accent mb-4">Infrastructure & Data</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag">Linux/Unix Admin</span>
+                        <span class="skill-tag">Windows Server</span>
+                        <span class="skill-tag">TCP/IP Networking</span>
+                        <span class="skill-tag">Firewalls & IDS/IPS</span>
+                        <span class="skill-tag">Cryptography</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Custom Tailwind Class for Skill Tags -->
+            <script>
+                // Define the styling for skill tags (badges/chips) dynamically
+                document.querySelectorAll('.skill-tag').forEach(tag => {
+                    tag.classList.add('px-4', 'py-1', 'bg-gray-700', 'text-sm', 'font-medium', 'text-gray-200', 'rounded-full', 'hover:bg-accent', 'hover:text-white', 'transition', 'duration-200', 'cursor-pointer');
+                });
+            </script>
+        </section>
+
+        <!-- 4. Projects Section -->
+        <section id="projects" class="py-16 md:py-24 border-t border-gray-700">
+            <h2 class="text-4xl font-bold text-white mb-10 section-header">Featured Projects</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <!-- Project Card 1: Incident Response Simulation -->
+                <div class="project-card bg-secondary-dark p-6 rounded-xl shadow-xl border border-gray-700 flex flex-col">
+                    <img src="https://placehold.co/600x400/374151/FFFFFF?text=Incident+Response" alt="Incident Response Simulation Project" class="rounded-lg mb-4 object-cover h-48">
+                    <h3 class="text-2xl font-bold text-white mb-2">Incident Response Playbook</h3>
+                    <p class="text-gray-400 mb-4 flex-grow">
+                        Designed and documented a comprehensive playbook for a ransomware incident, focusing on containment, eradication, and post-incident analysis according to industry standards.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-600 text-white px-3 py-1 rounded-full">Incident Response</span>
+                        <span class="text-xs bg-gray-600 text-white px-3 py-1 rounded-full">Documentation</span>
+                        <span class="text-xs bg-gray-600 text-white px-3 py-1 rounded-full">MITRE ATT&CK</span>
+                    </div>
+                    <div class="flex justify-end space-x-3 mt-auto">
+                        <a href="#" class="text-accent hover:text-accent-light transition duration-200">View Report &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Project Card 2: Network Monitoring Dashboard -->
+                <div class="project-card bg-secondary-dark p-6 rounded-xl shadow-xl border border-gray-700 flex flex-col">
+                    <img src="https://placehold.co/600x400/374151/FFFFFF?text=Network+Monitoring" alt="Network Monitoring Dashboard" class="rounded-lg mb-4 object-cover h-48">
+                    <h3 class="text-2xl font-bold text-white mb-2">Real-Time Network Scanner</h3>
+                    <p class="text-gray-400 mb-4 flex-grow">
+                        Developed a Python-based tool to scan a local network, report active hosts, and check for open/vulnerable ports. Includes a simple web visualization.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-600 text-white px-3 py-1 rounded-full">Python</span>
+                        <span class="text-xs bg-gray-600 text-white px-3 py-1 rounded-full">Scapy</span>
+                        <span class="text-xs bg-gray-600 text-white px-3 py-1 rounded-full">Network Analysis</span>
+                    </div>
+                    <div class="flex justify-end space-x-3 mt-auto">
+                        <a href="#" class="text-accent hover:text-accent-light transition duration-200">GitHub &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Project Card 3: Vulnerability Scanning Report -->
+                <div class="project-card bg-secondary-dark p-6 rounded-xl shadow-xl border border-gray-700 flex flex-col">
+                    <img src="https://placehold.co/600x400/374151/FFFFFF?text=Vulnerability+Scan" alt="Vulnerability Scanning Report" class="rounded-lg mb-4 object-cover h-48">
+                    <h3 class="text-2xl font-bold text-white mb-2">Web App Security Audit</h3>
+                    <p class="text-gray-400 mb-4 flex-grow">
+                        Conducted a comprehensive security audit on a simulated e-commerce platform, detailing vulnerabilities related to OWASP Top 10 and providing remediation strategies.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-600 text-white px-3 py-1 rounded-full">Penetration Testing</span>
+                        <span class="text-xs bg-gray-600 text-white px-3 py-1 rounded-full">OWASP</span>
+                        <span class="text-xs bg-gray-600 text-white px-3 py-1 rounded-full">Nmap/Nessus</span>
+                    </div>
+                    <div class="flex justify-end space-x-3 mt-auto">
+                        <a href="#" class="text-accent hover:text-accent-light transition duration-200">Case Study &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5. Contact Section -->
+        <section id="contact" class="py-16 md:py-24 border-t border-gray-700">
+            <h2 class="text-4xl font-bold text-white mb-10 section-header">Get In Touch</h2>
+
+            <div class="bg-secondary-dark p-8 rounded-xl shadow-2xl max-w-2xl mx-auto">
+                <p class="text-lg text-gray-300 mb-6 text-center">
+                    I am actively seeking internships and collaborations in the field of Cybersecurity. Send me a message, and let's discuss potential opportunities!
+                </p>
+                <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-text-light mb-1">Name</label>
+                        <input type="text" id="name" name="name" required class="w-full px-4 py-2 bg-primary-dark border border-gray-700 rounded-lg focus:border-accent focus:ring-accent transition duration-200 text-white">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-text-light mb-1">Email</label>
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-2 bg-primary-dark border border-gray-700 rounded-lg focus:border-accent focus:ring-accent transition duration-200 text-white">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-text-light mb-1">Message</label>
+                        <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 bg-primary-dark border border-gray-700 rounded-lg focus:border-accent focus:ring-accent transition duration-200 text-white"></textarea>
+                    </div>
+                    <button type="submit" class="w-full px-4 py-3 bg-accent text-white font-semibold rounded-lg shadow-lg hover:bg-accent-light transition duration-300 transform hover:scale-[1.01]">
+                        Send Message
+                    </button>
+                    <!-- Form Submission Message Box -->
+                    <div id="form-message" class="mt-4 p-3 bg-green-900/50 text-green-300 rounded-lg text-center hidden"></div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-secondary-dark border-t border-gray-700 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
+            <p>&copy; <span id="current-year"></span> Nahusenai Minalu. All rights reserved.</p>
+            <div class="mt-4 space-x-4">
+                <a href="https://linkedin.com" target="_blank" class="hover:text-accent transition duration-200">LinkedIn</a>
+                <a href="https://github.com" target="_blank" class="hover:text-accent transition duration-200">GitHub</a>
+                <a href="mailto:nahusenai.minalu@example.com" class="hover:text-accent transition duration-200">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year in the footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Mobile Menu Toggle Logic
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        });
+
+        // Function to handle form submission (simulated, since no backend is connected)
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const messageBox = document.getElementById('form-message');
+            const form = document.getElementById('contact-form');
+            const button = form.querySelector('button[type="submit"]');
+
+            // Simulate loading state
+            button.textContent = 'Sending...';
+            button.disabled = true;
+
+            setTimeout(() => {
+                // Simulate successful submission
+                button.textContent = 'Send Message';
+                button.disabled = false;
+                form.reset();
+
+                messageBox.textContent = 'Thank you! Your message has been sent successfully.';
+                messageBox.classList.remove('hidden', 'bg-red-900/50', 'text-red-300');
+                messageBox.classList.add('bg-green-900/50', 'text-green-300');
+
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    messageBox.classList.add('hidden');
+                }, 5000);
+
+            }, 1500); // Simulate network delay
+        }
+    </script>
+</body>
+</html>
